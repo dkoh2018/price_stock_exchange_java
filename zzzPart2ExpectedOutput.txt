@@ -1,0 +1,422 @@
+
+1) Try to make a ProductBook with a null product symbol
+Failed to make product book: null
+
+2) Try to make a ProductBook with an empty product symbol
+Failed to make product book: 
+
+3) Make a ProductBook with a legitimate product symbol
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+4) Try to add a null order to the TGT product book
+Correctly rejected null order
+
+5) Try to add a null quote to the TGT product book
+Correctly rejected null quote
+
+6) Add 3 BUY orders to the TGT product book
+**ADD: AXE BUY order: TGT at $133.75, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$133.75317884384697700
+**ADD: BAT BUY order: TGT at $133.85, Orig Vol: 150, Rem Vol: 150, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$133.85317884396705500
+**ADD: CAM BUY order: TGT at $133.95, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$133.95317884396859300
+
+Top of BUY book: Top of BUY book: $133.95 x 80
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	$133.95:
+		CAM BUY order: TGT at $133.95, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$133.95317884396859300
+	$133.85:
+		BAT BUY order: TGT at $133.85, Orig Vol: 150, Rem Vol: 150, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$133.85317884396705500
+	$133.75:
+		AXE BUY order: TGT at $133.75, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$133.75317884384697700
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+7) Cancel the 3 BUY orders in the TGT product book
+**CANCEL: AXE BUY order: TGT at $133.75, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$133.75317884384697700
+**CANCEL: BAT BUY order: TGT at $133.85, Orig Vol: 150, Rem Vol: 150, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$133.85317884396705500
+**CANCEL: CAM BUY order: TGT at $133.95, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$133.95317884396859300
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+8) Add 3 SELL orders to the TGT product book
+**ADD: AXE SELL order: TGT at $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.00317884398011600
+**ADD: BAT SELL order: TGT at $134.05, Orig Vol: 150, Rem Vol: 150, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$134.05317884398236200
+**ADD: CAM SELL order: TGT at $134.15, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$134.15317884398411000
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $134.00 x 50
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	$134.00:
+		AXE SELL order: TGT at $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.00317884398011600
+	$134.05:
+		BAT SELL order: TGT at $134.05, Orig Vol: 150, Rem Vol: 150, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$134.05317884398236200
+	$134.15:
+		CAM SELL order: TGT at $134.15, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$134.15317884398411000
+--------------------------------------------
+
+9) Cancel the 3 SELL orders in the TGT product book
+**CANCEL: AXE SELL order: TGT at $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.00317884398011600
+**CANCEL: BAT SELL order: TGT at $134.05, Orig Vol: 150, Rem Vol: 150, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$134.05317884398236200
+**CANCEL: CAM SELL order: TGT at $134.15, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$134.15317884398411000
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+10) Add 3 quotes to the TGT product book
+**ADD: AXE BUY side quote for TGT: $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.00317884400106300
+**ADD: AXE SELL side quote for TGT: $134.30, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.30317884400309800
+**ADD: BAT BUY side quote for TGT: $133.90, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$133.90317884400733500
+**ADD: BAT SELL side quote for TGT: $134.20, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$134.20317884400758400
+**ADD: CAM BUY side quote for TGT: $133.80, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$133.80317884400948200
+**ADD: CAM SELL side quote for TGT: $134.10, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$134.10317884400991600
+
+Top of BUY book: Top of BUY book: $134.00 x 50
+Top of SELL book: Top of SELL book: $134.10 x 50
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	$134.00:
+		AXE BUY side quote for TGT: $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.00317884400106300
+	$133.90:
+		BAT BUY side quote for TGT: $133.90, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$133.90317884400733500
+	$133.80:
+		CAM BUY side quote for TGT: $133.80, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$133.80317884400948200
+Side: SELL
+	$134.10:
+		CAM SELL side quote for TGT: $134.10, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$134.10317884400991600
+	$134.20:
+		BAT SELL side quote for TGT: $134.20, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$134.20317884400758400
+	$134.30:
+		AXE SELL side quote for TGT: $134.30, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.30317884400309800
+--------------------------------------------
+
+11) Change the a quotes in the TGT product book
+**CANCEL: AXE BUY side quote for TGT: $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.00317884400106300
+**CANCEL: AXE SELL side quote for TGT: $134.30, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.30317884400309800
+**ADD: AXE BUY side quote for TGT: $134.01, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.01317884401807800
+**ADD: AXE SELL side quote for TGT: $134.05, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.05317884401838500
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	$134.01:
+		AXE BUY side quote for TGT: $134.01, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.01317884401807800
+	$133.90:
+		BAT BUY side quote for TGT: $133.90, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$133.90317884400733500
+	$133.80:
+		CAM BUY side quote for TGT: $133.80, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$133.80317884400948200
+Side: SELL
+	$134.05:
+		AXE SELL side quote for TGT: $134.05, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.05317884401838500
+	$134.10:
+		CAM SELL side quote for TGT: $134.10, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$134.10317884400991600
+	$134.20:
+		BAT SELL side quote for TGT: $134.20, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$134.20317884400758400
+--------------------------------------------
+
+12) Cancel the 3 quotes in the TGT product book
+**CANCEL: AXE BUY side quote for TGT: $134.01, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.01317884401807800
+**CANCEL: AXE SELL side quote for TGT: $134.05, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: AXETGT$134.05317884401838500
+**CANCEL: BAT BUY side quote for TGT: $133.90, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$133.90317884400733500
+**CANCEL: BAT SELL side quote for TGT: $134.20, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: BATTGT$134.20317884400758400
+**CANCEL: CAM BUY side quote for TGT: $133.80, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$133.80317884400948200
+**CANCEL: CAM SELL side quote for TGT: $134.10, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: CAMTGT$134.10317884400991600
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+13) Try to cancel bad orders in the TGT product book
+Failed to cancel BUY order
+
+Failed to cancel SELL order
+
+14) Try to cancel a bad quote in the TGT product book
+Failed to cancel null quote
+
+15) Trade test: Single BUY and single SELL order - fully trade
+**ADD: DEM BUY order: TGT at $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: DEMTGT$134.00317884403344900
+**ADD: EEG SELL order: TGT at $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: EEGTGT$134.00317884403467900
+	FULL FILL: (BUY 50) DEM BUY order: TGT at $134.00, Orig Vol: 50, Rem Vol: 0, Fill Vol: 50, CXL Vol: 0, ID: DEMTGT$134.00317884403344900
+	FULL FILL: (SELL 50) EEG SELL order: TGT at $134.00, Orig Vol: 50, Rem Vol: 0, Fill Vol: 50, CXL Vol: 0, ID: EEGTGT$134.00317884403467900
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+16) Trade test: Single BUY and single SELL order - full/partial trade & cancel
+**ADD: FEN BUY order: TGT at $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: FENTGT$134.00317884406232400
+**ADD: GAM SELL order: TGT at $134.00, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: GAMTGT$134.00317884406331600
+	FULL FILL: (BUY 50) FEN BUY order: TGT at $134.00, Orig Vol: 50, Rem Vol: 0, Fill Vol: 50, CXL Vol: 0, ID: FENTGT$134.00317884406232400
+	PARTIAL FILL: (SELL 50) GAM SELL order: TGT at $134.00, Orig Vol: 100, Rem Vol: 50, Fill Vol: 50, CXL Vol: 0, ID: GAMTGT$134.00317884406331600
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $134.00 x 50
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	$134.00:
+		GAM SELL order: TGT at $134.00, Orig Vol: 100, Rem Vol: 50, Fill Vol: 50, CXL Vol: 0, ID: GAMTGT$134.00317884406331600
+--------------------------------------------
+
+**CANCEL: GAM SELL order: TGT at $134.00, Orig Vol: 100, Rem Vol: 50, Fill Vol: 50, CXL Vol: 0, ID: GAMTGT$134.00317884406331600
+
+17) Trade test: Multiple BUY and single SELL order - fully trade
+**ADD: HOB BUY order: TGT at $134.00, Orig Vol: 60, Rem Vol: 60, Fill Vol: 0, CXL Vol: 0, ID: HOBTGT$134.00317884406865400
+**ADD: IGY BUY order: TGT at $134.00, Orig Vol: 70, Rem Vol: 70, Fill Vol: 0, CXL Vol: 0, ID: IGYTGT$134.00317884406978800
+**ADD: JAM BUY order: TGT at $134.00, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: JAMTGT$134.00317884407065500
+**ADD: KIT SELL order: TGT at $134.00, Orig Vol: 210, Rem Vol: 210, Fill Vol: 0, CXL Vol: 0, ID: KITTGT$134.00317884407180500
+	FULL FILL: (BUY 60) HOB BUY order: TGT at $134.00, Orig Vol: 60, Rem Vol: 0, Fill Vol: 60, CXL Vol: 0, ID: HOBTGT$134.00317884406865400
+	FULL FILL: (BUY 70) IGY BUY order: TGT at $134.00, Orig Vol: 70, Rem Vol: 0, Fill Vol: 70, CXL Vol: 0, ID: IGYTGT$134.00317884406978800
+	FULL FILL: (BUY 80) JAM BUY order: TGT at $134.00, Orig Vol: 80, Rem Vol: 0, Fill Vol: 80, CXL Vol: 0, ID: JAMTGT$134.00317884407065500
+	FULL FILL: (SELL 210) KIT SELL order: TGT at $134.00, Orig Vol: 210, Rem Vol: 0, Fill Vol: 210, CXL Vol: 0, ID: KITTGT$134.00317884407180500
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+18) Trade test: Multiple BUY and single SELL order - full/partial trade & cancel
+**ADD: LEM BUY order: TGT at $134.00, Orig Vol: 60, Rem Vol: 60, Fill Vol: 0, CXL Vol: 0, ID: LEMTGT$134.00317884407602500
+**ADD: MOD BUY order: TGT at $134.00, Orig Vol: 70, Rem Vol: 70, Fill Vol: 0, CXL Vol: 0, ID: MODTGT$134.00317884407685500
+**ADD: NET BUY order: TGT at $134.00, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: NETTGT$134.00317884407779700
+**ADD: OBS SELL order: TGT at $134.00, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: OBSTGT$134.00317884407880200
+	PARTIAL FILL: (BUY 29) LEM BUY order: TGT at $134.00, Orig Vol: 60, Rem Vol: 31, Fill Vol: 29, CXL Vol: 0, ID: LEMTGT$134.00317884407602500
+	PARTIAL FILL: (BUY 34) MOD BUY order: TGT at $134.00, Orig Vol: 70, Rem Vol: 36, Fill Vol: 34, CXL Vol: 0, ID: MODTGT$134.00317884407685500
+	PARTIAL FILL: (BUY 37) NET BUY order: TGT at $134.00, Orig Vol: 80, Rem Vol: 43, Fill Vol: 37, CXL Vol: 0, ID: NETTGT$134.00317884407779700
+	FULL FILL: (SELL 100) OBS SELL order: TGT at $134.00, Orig Vol: 100, Rem Vol: 0, Fill Vol: 100, CXL Vol: 0, ID: OBSTGT$134.00317884407880200
+**CANCEL: LEM BUY order: TGT at $134.00, Orig Vol: 60, Rem Vol: 31, Fill Vol: 29, CXL Vol: 0, ID: LEMTGT$134.00317884407602500
+**CANCEL: MOD BUY order: TGT at $134.00, Orig Vol: 70, Rem Vol: 36, Fill Vol: 34, CXL Vol: 0, ID: MODTGT$134.00317884407685500
+**CANCEL: NET BUY order: TGT at $134.00, Orig Vol: 80, Rem Vol: 43, Fill Vol: 37, CXL Vol: 0, ID: NETTGT$134.00317884407779700
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+19) Trade test: Single BUY and multiple SELL orders - fully trade
+**ADD: POP SELL order: TGT at $134.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: POPTGT$134.00317884408353000
+**ADD: QAB SELL order: TGT at $134.00, Orig Vol: 60, Rem Vol: 60, Fill Vol: 0, CXL Vol: 0, ID: QABTGT$134.00317884408475700
+**ADD: REX SELL order: TGT at $134.00, Orig Vol: 70, Rem Vol: 70, Fill Vol: 0, CXL Vol: 0, ID: REXTGT$134.00317884408564100
+**ADD: SAM BUY order: TGT at $134.00, Orig Vol: 180, Rem Vol: 180, Fill Vol: 0, CXL Vol: 0, ID: SAMTGT$134.00317884408640600
+	FULL FILL: (BUY 180) SAM BUY order: TGT at $134.00, Orig Vol: 180, Rem Vol: 0, Fill Vol: 180, CXL Vol: 0, ID: SAMTGT$134.00317884408640600
+	FULL FILL: (SELL 50) POP SELL order: TGT at $134.00, Orig Vol: 50, Rem Vol: 0, Fill Vol: 50, CXL Vol: 0, ID: POPTGT$134.00317884408353000
+	FULL FILL: (SELL 60) QAB SELL order: TGT at $134.00, Orig Vol: 60, Rem Vol: 0, Fill Vol: 60, CXL Vol: 0, ID: QABTGT$134.00317884408475700
+	FULL FILL: (SELL 70) REX SELL order: TGT at $134.00, Orig Vol: 70, Rem Vol: 0, Fill Vol: 70, CXL Vol: 0, ID: REXTGT$134.00317884408564100
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+20) Trade test: Single BUY and multiple SELL orders - full/partial trade & cancel
+**ADD: TIM SELL order: TGT at $134.00, Orig Vol: 60, Rem Vol: 60, Fill Vol: 0, CXL Vol: 0, ID: TIMTGT$134.00317884408969400
+**ADD: UBL SELL order: TGT at $134.00, Orig Vol: 70, Rem Vol: 70, Fill Vol: 0, CXL Vol: 0, ID: UBLTGT$134.00317884409051300
+**ADD: VOM SELL order: TGT at $134.00, Orig Vol: 80, Rem Vol: 80, Fill Vol: 0, CXL Vol: 0, ID: VOMTGT$134.00317884409130100
+**ADD: WUN BUY order: TGT at $134.00, Orig Vol: 250, Rem Vol: 250, Fill Vol: 0, CXL Vol: 0, ID: WUNTGT$134.00317884409208400
+	PARTIAL FILL: (BUY 210) WUN BUY order: TGT at $134.00, Orig Vol: 250, Rem Vol: 40, Fill Vol: 210, CXL Vol: 0, ID: WUNTGT$134.00317884409208400
+	FULL FILL: (SELL 60) TIM SELL order: TGT at $134.00, Orig Vol: 60, Rem Vol: 0, Fill Vol: 60, CXL Vol: 0, ID: TIMTGT$134.00317884408969400
+	FULL FILL: (SELL 70) UBL SELL order: TGT at $134.00, Orig Vol: 70, Rem Vol: 0, Fill Vol: 70, CXL Vol: 0, ID: UBLTGT$134.00317884409051300
+	FULL FILL: (SELL 80) VOM SELL order: TGT at $134.00, Orig Vol: 80, Rem Vol: 0, Fill Vol: 80, CXL Vol: 0, ID: VOMTGT$134.00317884409130100
+**CANCEL: WUN BUY order: TGT at $134.00, Orig Vol: 250, Rem Vol: 40, Fill Vol: 210, CXL Vol: 0, ID: WUNTGT$134.00317884409208400
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+21) Trade test: Multiple orders and quotes on BUY side traded with large SELL order
+**ADD: XEN BUY side quote for TGT: $133.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.00317884409609400
+**ADD: XEN SELL side quote for TGT: $133.20, Orig Vol: 75, Rem Vol: 75, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.20317884409631800
+**ADD: YAM BUY side quote for TGT: $133.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.00317884409806200
+**ADD: YAM SELL side quote for TGT: $133.20, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.20317884409829200
+**ADD: ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 15, Fill Vol: 0, CXL Vol: 0, ID: ZENTGT$133.00317884409984500
+**ADD: AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 180, Fill Vol: 0, CXL Vol: 0, ID: AAMTGT$133.00317884410082800
+**ADD: BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 65, Fill Vol: 0, CXL Vol: 0, ID: BENTGT$133.00317884410156900
+
+Top of BUY book: Top of BUY book: $133.00 x 360
+Top of SELL book: Top of SELL book: $133.20 x 175
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	$133.00:
+		XEN BUY side quote for TGT: $133.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.00317884409609400
+		YAM BUY side quote for TGT: $133.00, Orig Vol: 50, Rem Vol: 50, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.00317884409806200
+		ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 15, Fill Vol: 0, CXL Vol: 0, ID: ZENTGT$133.00317884409984500
+		AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 180, Fill Vol: 0, CXL Vol: 0, ID: AAMTGT$133.00317884410082800
+		BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 65, Fill Vol: 0, CXL Vol: 0, ID: BENTGT$133.00317884410156900
+Side: SELL
+	$133.20:
+		XEN SELL side quote for TGT: $133.20, Orig Vol: 75, Rem Vol: 75, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.20317884409631800
+		YAM SELL side quote for TGT: $133.20, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.20317884409829200
+--------------------------------------------
+
+**ADD: CEN SELL order: TGT at $133.00, Orig Vol: 360, Rem Vol: 360, Fill Vol: 0, CXL Vol: 0, ID: CENTGT$133.00317884410682000
+	FULL FILL: (BUY 50) XEN BUY side quote for TGT: $133.00, Orig Vol: 50, Rem Vol: 0, Fill Vol: 50, CXL Vol: 0, ID: XENTGT$133.00317884409609400
+	FULL FILL: (BUY 50) YAM BUY side quote for TGT: $133.00, Orig Vol: 50, Rem Vol: 0, Fill Vol: 50, CXL Vol: 0, ID: YAMTGT$133.00317884409806200
+	FULL FILL: (BUY 15) ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 0, Fill Vol: 15, CXL Vol: 0, ID: ZENTGT$133.00317884409984500
+	FULL FILL: (BUY 180) AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 0, Fill Vol: 180, CXL Vol: 0, ID: AAMTGT$133.00317884410082800
+	FULL FILL: (BUY 65) BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 0, Fill Vol: 65, CXL Vol: 0, ID: BENTGT$133.00317884410156900
+	FULL FILL: (SELL 360) CEN SELL order: TGT at $133.00, Orig Vol: 360, Rem Vol: 0, Fill Vol: 360, CXL Vol: 0, ID: CENTGT$133.00317884410682000
+**CANCEL: XEN SELL side quote for TGT: $133.20, Orig Vol: 75, Rem Vol: 75, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.20317884409631800
+**CANCEL: YAM SELL side quote for TGT: $133.20, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.20317884409829200
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+22) Trade test: Multiple orders and quotes on BUY side traded with 1 SELL order
+**ADD: XEN BUY side quote for TGT: $133.00, Orig Vol: 40, Rem Vol: 40, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.00317884411198900
+**ADD: XEN SELL side quote for TGT: $133.20, Orig Vol: 75, Rem Vol: 75, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.20317884411217900
+**ADD: YAM BUY side quote for TGT: $133.00, Orig Vol: 60, Rem Vol: 60, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.00317884411375900
+**ADD: YAM SELL side quote for TGT: $133.20, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.20317884411394300
+**ADD: ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 15, Fill Vol: 0, CXL Vol: 0, ID: ZENTGT$133.00317884411578800
+**ADD: AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 180, Fill Vol: 0, CXL Vol: 0, ID: AAMTGT$133.00317884411675400
+**ADD: BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 65, Fill Vol: 0, CXL Vol: 0, ID: BENTGT$133.00317884411755300
+
+Top of BUY book: Top of BUY book: $133.00 x 360
+Top of SELL book: Top of SELL book: $133.20 x 175
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	$133.00:
+		XEN BUY side quote for TGT: $133.00, Orig Vol: 40, Rem Vol: 40, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.00317884411198900
+		YAM BUY side quote for TGT: $133.00, Orig Vol: 60, Rem Vol: 60, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.00317884411375900
+		ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 15, Fill Vol: 0, CXL Vol: 0, ID: ZENTGT$133.00317884411578800
+		AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 180, Fill Vol: 0, CXL Vol: 0, ID: AAMTGT$133.00317884411675400
+		BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 65, Fill Vol: 0, CXL Vol: 0, ID: BENTGT$133.00317884411755300
+Side: SELL
+	$133.20:
+		XEN SELL side quote for TGT: $133.20, Orig Vol: 75, Rem Vol: 75, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.20317884411217900
+		YAM SELL side quote for TGT: $133.20, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.20317884411394300
+--------------------------------------------
+
+**ADD: CEN SELL order: TGT at $133.00, Orig Vol: 200, Rem Vol: 200, Fill Vol: 0, CXL Vol: 0, ID: CENTGT$133.00317884412348900
+	PARTIAL FILL: (BUY 23) XEN BUY side quote for TGT: $133.00, Orig Vol: 40, Rem Vol: 17, Fill Vol: 23, CXL Vol: 0, ID: XENTGT$133.00317884411198900
+	PARTIAL FILL: (BUY 34) YAM BUY side quote for TGT: $133.00, Orig Vol: 60, Rem Vol: 26, Fill Vol: 34, CXL Vol: 0, ID: YAMTGT$133.00317884411375900
+	PARTIAL FILL: (BUY 9) ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 6, Fill Vol: 9, CXL Vol: 0, ID: ZENTGT$133.00317884411578800
+	PARTIAL FILL: (BUY 100) AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 80, Fill Vol: 100, CXL Vol: 0, ID: AAMTGT$133.00317884411675400
+	PARTIAL FILL: (BUY 34) BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 31, Fill Vol: 34, CXL Vol: 0, ID: BENTGT$133.00317884411755300
+	FULL FILL: (SELL 200) CEN SELL order: TGT at $133.00, Orig Vol: 200, Rem Vol: 0, Fill Vol: 200, CXL Vol: 0, ID: CENTGT$133.00317884412348900
+
+Top of BUY book: Top of BUY book: $133.00 x 160
+Top of SELL book: Top of SELL book: $133.20 x 175
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	$133.00:
+		XEN BUY side quote for TGT: $133.00, Orig Vol: 40, Rem Vol: 17, Fill Vol: 23, CXL Vol: 0, ID: XENTGT$133.00317884411198900
+		YAM BUY side quote for TGT: $133.00, Orig Vol: 60, Rem Vol: 26, Fill Vol: 34, CXL Vol: 0, ID: YAMTGT$133.00317884411375900
+		ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 6, Fill Vol: 9, CXL Vol: 0, ID: ZENTGT$133.00317884411578800
+		AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 80, Fill Vol: 100, CXL Vol: 0, ID: AAMTGT$133.00317884411675400
+		BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 31, Fill Vol: 34, CXL Vol: 0, ID: BENTGT$133.00317884411755300
+Side: SELL
+	$133.20:
+		XEN SELL side quote for TGT: $133.20, Orig Vol: 75, Rem Vol: 75, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.20317884411217900
+		YAM SELL side quote for TGT: $133.20, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.20317884411394300
+--------------------------------------------
+
+23) Trade test: Cancel all booked orders and quotes
+**CANCEL: XEN BUY side quote for TGT: $133.00, Orig Vol: 40, Rem Vol: 17, Fill Vol: 23, CXL Vol: 0, ID: XENTGT$133.00317884411198900
+**CANCEL: XEN SELL side quote for TGT: $133.20, Orig Vol: 75, Rem Vol: 75, Fill Vol: 0, CXL Vol: 0, ID: XENTGT$133.20317884411217900
+**CANCEL: YAM BUY side quote for TGT: $133.00, Orig Vol: 60, Rem Vol: 26, Fill Vol: 34, CXL Vol: 0, ID: YAMTGT$133.00317884411375900
+**CANCEL: YAM SELL side quote for TGT: $133.20, Orig Vol: 100, Rem Vol: 100, Fill Vol: 0, CXL Vol: 0, ID: YAMTGT$133.20317884411394300
+**CANCEL: ZEN BUY order: TGT at $133.00, Orig Vol: 15, Rem Vol: 6, Fill Vol: 9, CXL Vol: 0, ID: ZENTGT$133.00317884411578800
+**CANCEL: AAM BUY order: TGT at $133.00, Orig Vol: 180, Rem Vol: 80, Fill Vol: 100, CXL Vol: 0, ID: AAMTGT$133.00317884411675400
+**CANCEL: BEN BUY order: TGT at $133.00, Orig Vol: 65, Rem Vol: 31, Fill Vol: 34, CXL Vol: 0, ID: BENTGT$133.00317884411755300
+
+Top of BUY book: Top of BUY book: $0.00 x 0
+Top of SELL book: Top of SELL book: $0.00 x 0
+
+--------------------------------------------
+Product Book: TGT
+Side: BUY
+	<Empty>
+Side: SELL
+	<Empty>
+--------------------------------------------
+
+
