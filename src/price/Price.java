@@ -2,9 +2,6 @@ package price;
 
 import exceptions.InvalidPriceException;
 
-import java.text.DecimalFormat;
-import java.util.Objects;
-
 public class Price implements Comparable<Price> {
 
     // final => immutable
@@ -55,6 +52,7 @@ public class Price implements Comparable<Price> {
         if (p == null) throw new InvalidPriceException("Null price");
         return this.cents < p.cents;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true; // literally same object
@@ -88,7 +86,6 @@ public class Price implements Comparable<Price> {
         // 4) combine 1,2,3...ALWAYS put negative AFTER the dollar sign
         return String.format("$%s%,d.%02d", sign, dollars, remainder);
     }
-
 
     @Override
     public int hashCode() {
