@@ -167,18 +167,17 @@ public class ProductBookSide {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Side: ").append(side).append("\n");
+        String result = "Side: " + side + "\n";
         if (bookEntries.isEmpty()) {
-            sb.append("\t<Empty>\n");
+            result += "\t<Empty>\n";
         } else {
             for (Price p : bookEntries.keySet()) {
-                sb.append("\t").append(p.toString()).append(":\n");
+                result += "\t" + p.toString() + ":\n";
                 for (Tradable t : bookEntries.get(p)) {
-                    sb.append("\t\t").append(t.toString()).append("\n");
+                    result += "\t\t" + t.toString() + "\n";
                 }
             }
         }
-        return sb.toString();
+        return result;
     }
 }
