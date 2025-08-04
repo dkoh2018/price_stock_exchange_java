@@ -4,6 +4,7 @@ import exceptions.InvalidTradableException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
+import managers.UserManager;
 import price.Price;
 import tradable.Tradable;
 import tradable.TradableDTO;
@@ -37,7 +38,10 @@ public class ProductBookSide {
         
         System.out.println("**ADD: " + o.toString());
         
-        return o.makeTradableDTO();
+        TradableDTO dto = o.makeTradableDTO();
+        UserManager.getInstance().updateTradable(o.getUser(), dto);
+        
+        return dto;
     }
 
     public TradableDTO cancel(String tradableId) {
@@ -56,7 +60,9 @@ public class ProductBookSide {
                     if (tradables.isEmpty()) {
                         bookEntries.remove(price);
                     }
-                    return t.makeTradableDTO();
+                    TradableDTO dto = t.makeTradableDTO();
+                    UserManager.getInstance().updateTradable(t.getUser(), dto);
+                    return dto;
                 }
             }
         }
@@ -67,23 +73,32 @@ public class ProductBookSide {
         if (userName == null) {
             return null;
         }
-        String tradableIdToCancel = null;
+        
+        ArrayList<TradableDTO> canceledTradables = new ArrayList<>();
+        
         for (ArrayList<Tradable> tradables : bookEntries.values()) {
-            for (Tradable t : tradables) {
+            for (int i = tradables.size() - 1; i >= 0; i--) {
+                Tradable t = tradables.get(i);
                 if (t.getUser().equals(userName)) {
-                    tradableIdToCancel = t.getId();
-                    break;
+                    System.out.println("**CANCEL: " + t.toString());
+                    tradables.remove(i);
+                    t.setCancelledVolume(t.getCancelledVolume() + t.getRemainingVolume());
+                    t.setRemainingVolume(0);
+                    
+                    TradableDTO dto = t.makeTradableDTO();
+                    canceledTradables.add(dto);
+                    UserManager.getInstance().updateTradable(t.getUser(), dto);
                 }
             }
-            if (tradableIdToCancel != null) {
-                break;
-            }
         }
-
-        if (tradableIdToCancel != null) {
-            return cancel(tradableIdToCancel);
+        
+        // Remove empty price levels
+        bookEntries.entrySet().removeIf(entry -> entry.getValue().isEmpty());
+        
+        if (!canceledTradables.isEmpty()) {
+            return canceledTradables.get(0); // Return the first one for backward compatibility
         }
-
+        
         return null;
     }
 
@@ -138,6 +153,8 @@ public class ProductBookSide {
                 t.setFilledVolume(t.getOriginalVolume());
                 
                 System.out.println("\tFULL FILL: (" + side + " " + rv + ") " + t.toString());
+                
+                UserManager.getInstance().updateTradable(t.getUser(), t.makeTradableDTO());
             }
             
             bookEntries.remove(topPrice);
@@ -160,6 +177,8 @@ public class ProductBookSide {
                     System.out.println("\tPARTIAL FILL: (" + side + " " + toTrade + ") " + t.toString());
                     
                     remainder -= toTrade;
+                    
+                    UserManager.getInstance().updateTradable(t.getUser(), t.makeTradableDTO());
                 }
             }
         }

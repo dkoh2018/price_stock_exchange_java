@@ -27,4 +27,8 @@ public record TradableDTO(
                 t.getId()
         );
     }
+    
+    public String getId() {
+        return tradableId;
+    }
 }
