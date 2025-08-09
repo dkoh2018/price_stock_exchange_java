@@ -2,11 +2,18 @@ package price;
 
 
 import exceptions.InvalidPriceException;
+import java.util.HashMap;
 
 public abstract class PriceFactory {
+    private static final HashMap<Integer, Price> priceCache = new HashMap<>();
 
     public static Price makePrice(int value) {
-        return new Price(value);
+        if (priceCache.containsKey(value)) {
+            return priceCache.get(value);
+        }
+        Price newPrice = new Price(value);
+        priceCache.put(value, newPrice);
+        return newPrice;
     }
 
     public static Price makePrice(String stringValueIn) throws InvalidPriceException {
@@ -92,7 +99,12 @@ public abstract class PriceFactory {
             value = -value;
         }
 
-        return new Price(value);
+        if (priceCache.containsKey(value)) {
+            return priceCache.get(value);
+        }
+        Price newPrice = new Price(value);
+        priceCache.put(value, newPrice);
+        return newPrice;
 
 
     }

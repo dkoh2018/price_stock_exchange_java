@@ -49,6 +49,10 @@ public class Quote {
     public String getSymbol() {
         return product;
     }
+    
+    public String getProduct() {
+        return product;
+    }
 
     public String getUser() {
         return user;

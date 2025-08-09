@@ -13,7 +13,6 @@ public record TradableDTO(
         int filledVolume,
         BookSide side,
         String tradableId) {
-
     public TradableDTO(Tradable t) {
         this(
                 t.getUser(),
@@ -25,6 +24,25 @@ public record TradableDTO(
                 t.getFilledVolume(),
                 t.getSide(),
                 t.getId()
+        );
+    }
+    
+    public String getId() {
+        return tradableId;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("Product: %s, Price: %s, OriginalVolume: %d, RemainingVolume: %d, CancelledVolume: %d, FilledVolume: %d, User: %s, Side: %s, Id: %s",
+                product,
+                price,
+                originalVolume,
+                remainingVolume,
+                cancelledVolume,
+                filledVolume,
+                user,
+                side,
+                tradableId
         );
     }
 }

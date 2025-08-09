@@ -1,5 +1,15 @@
 
 
+import static book.BookSide.BUY;
+import static book.BookSide.SELL;
+import managers.ProductManager;
+import managers.UserManager;
+import price.Price;
+import price.PriceFactory;
+import tradable.Order;
+import tradable.Quote;
+import tradable.TradableDTO;
+
 public class Main {
     
     public static void main(String[] args) {

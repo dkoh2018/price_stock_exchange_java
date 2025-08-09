@@ -7,8 +7,8 @@ public class Price implements Comparable<Price> {
     // final => immutable
     private final int cents;
 
-    // constructor. using setPrice is mutable
-    public Price(int cents) {
+    // constructor restricted to package to enforce factory usage
+    Price(int cents) {
         this.cents = cents;
     }
 
@@ -19,18 +19,18 @@ public class Price implements Comparable<Price> {
 
     public Price add(Price p) throws InvalidPriceException {
         if (p == null) throw new InvalidPriceException("Null price");
-        return new Price(this.cents + p.cents);
+        return PriceFactory.makePrice(this.cents + p.cents);
     }
 
 
     public Price subtract(Price p) throws InvalidPriceException {
         if (p == null) throw new InvalidPriceException("Null price");
-        return new Price(this.cents - p.cents);
+        return PriceFactory.makePrice(this.cents - p.cents);
     }
 
 
     public Price multiply(int n) {
-        return new Price(this.cents * n);
+        return PriceFactory.makePrice(this.cents * n);
     }
 
     public boolean greaterOrEqual(Price p) throws InvalidPriceException {
