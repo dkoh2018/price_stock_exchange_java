@@ -11,6 +11,8 @@ import tradable.Tradable;
 import tradable.TradableDTO;
 
 public class ProductManager {
+
+    // singleton
     private static final ProductManager instance = new ProductManager();
     private final HashMap<String, ProductBook> productBooks = new HashMap<>();
     
@@ -20,6 +22,7 @@ public class ProductManager {
         return instance;
     }
     
+    // add a new product to the product books
     public void addProduct(String symbol) throws DataValidationException {
         if (symbol == null || !symbol.matches("[A-Z]{1,5}")) {
             throw new DataValidationException("Invalid product symbol");
@@ -28,6 +31,7 @@ public class ProductManager {
         productBooks.put(symbol, newBook);
     }
     
+    // get the product book for a given symbol
     public ProductBook getProductBook(String symbol) throws DataValidationException {
         ProductBook book = productBooks.get(symbol);
         if (book == null) {
@@ -36,6 +40,7 @@ public class ProductManager {
         return book;
     }
     
+    // get a random product symbol
     public String getRandomProduct() throws DataValidationException {
         if (productBooks.isEmpty()) {
             throw new DataValidationException("No products exist");
@@ -47,6 +52,7 @@ public class ProductManager {
         return keys.get(randomIndex);
     }
     
+    // add a tradable to the product book
     public TradableDTO addTradable(Tradable o) throws DataValidationException {
         if (o == null) {
             throw new DataValidationException("Tradable cannot be null");
@@ -61,6 +67,7 @@ public class ProductManager {
         return dto;
     }
     
+    // add a quote to the product book
     public TradableDTO[] addQuote(Quote q) throws DataValidationException {
         if (q == null) {
             throw new DataValidationException("Quote cannot be null");
@@ -80,6 +87,7 @@ public class ProductManager {
         return result;
     }
     
+    // cancel a tradable
     public TradableDTO cancel(TradableDTO o) throws DataValidationException {
         if (o == null) {
             throw new DataValidationException("TradableDTO cannot be null");
@@ -97,6 +105,7 @@ public class ProductManager {
         }
     }
     
+    // cancel a quote
     public TradableDTO[] cancelQuote(String symbol, String user) throws DataValidationException {
         if (symbol == null) {
             throw new DataValidationException("Symbol cannot be null");
@@ -109,6 +118,7 @@ public class ProductManager {
         return book.removeQuotesForUser(user);
     }
     
+    // print the product books
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

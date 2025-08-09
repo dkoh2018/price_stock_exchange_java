@@ -36,7 +36,7 @@ public class ProductBookSide {
         ArrayList<Tradable> entries = bookEntries.computeIfAbsent(o.getPrice(), k -> new ArrayList<>());
         entries.add(o);
         
-        System.out.println("**ADD: " + o.toString());
+        // System.out.println("**ADD: " + o.toString());
         
         TradableDTO dto = o.makeTradableDTO();
         UserManager.getInstance().updateTradable(o.getUser(), dto);
@@ -53,7 +53,8 @@ public class ProductBookSide {
             for (int i = 0; i < tradables.size(); i++) {
                 Tradable t = tradables.get(i);
                 if (t.getId().equals(tradableId)) {
-                    System.out.println("**CANCEL: " + t.toString());
+                    // System.out.println("**CANCEL: " + t.toString());
+                    
                     tradables.remove(i);
                     t.setCancelledVolume(t.getCancelledVolume() + t.getRemainingVolume());
                     t.setRemainingVolume(0);
@@ -80,7 +81,8 @@ public class ProductBookSide {
             for (int i = tradables.size() - 1; i >= 0; i--) {
                 Tradable t = tradables.get(i);
                 if (t.getUser().equals(userName)) {
-                    System.out.println("**CANCEL: " + t.toString());
+                    // System.out.println("**CANCEL: " + t.toString());
+                    
                     tradables.remove(i);
                     t.setCancelledVolume(t.getCancelledVolume() + t.getRemainingVolume());
                     t.setRemainingVolume(0);

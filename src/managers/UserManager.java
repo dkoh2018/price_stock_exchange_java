@@ -5,7 +5,10 @@ import java.util.TreeMap;
 import tradable.TradableDTO;
 import users.User;
 
+
 public class UserManager {
+
+    // singleton
     private static final  UserManager instance = new UserManager();
     private final TreeMap<String, User> users = new TreeMap<>();
     
@@ -15,6 +18,7 @@ public class UserManager {
         return instance;
     }
     
+    // initialize the user manager
     public void init(String[] usersIn) throws DataValidationException {
         if (usersIn == null) {
             throw new DataValidationException("Input user array cannot be null.");
@@ -26,6 +30,7 @@ public class UserManager {
         }
     }
     
+    // update a tradable
     public void updateTradable(String userId, TradableDTO o) throws DataValidationException {
         if (userId == null) {
             throw new DataValidationException("User ID cannot be null");
@@ -41,6 +46,7 @@ public class UserManager {
         user.updateTradable(o);
     }
     
+    // print the users
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
