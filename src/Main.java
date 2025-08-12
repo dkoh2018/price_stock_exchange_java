@@ -1,216 +1,152 @@
-
+// Please add any imports here as you have done in previous assignments
 
 import static book.BookSide.BUY;
 import static book.BookSide.SELL;
+
+import current.CurrentMarketPublisher;
 import managers.ProductManager;
 import managers.UserManager;
-import price.Price;
 import price.PriceFactory;
 import tradable.Order;
 import tradable.Quote;
 import tradable.TradableDTO;
+import users.User;
 
 public class Main {
-    
+
     public static void main(String[] args) {
 
         try {
-            System.out.println("1) Create 2 product books - WMT and TGT");
-
+            System.out.println("\nSetup: Initialize Products");
             ProductManager.getInstance().addProduct("WMT");
             ProductManager.getInstance().addProduct("TGT");
-            System.out.println();
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("2) Add 5 users to UserManager - \"ANA\", \"BOB\", \"COD\", \"DIG\", \"EST\", \"FUN\"");
+            System.out.println("\nSetup: Initialize Users");
             UserManager.getInstance().init(
-                    new String[]{"ANA", "BOB", "COD", "DIG", "EST", "FUN"});
-            System.out.println();
+                    new String[]{"ANA", "BOB", "COD", "DIG", "EST"});
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("2a) Print User Tradables:");
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
+            User u1 = UserManager.getInstance().getUser("ANA");
+            User u2 = UserManager.getInstance().getUser("BOB");
+            User u3 = UserManager.getInstance().getUser("COD");
+            User u4 = UserManager.getInstance().getUser("DIG");
+            User u5 = UserManager.getInstance().getUser("EST");
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("3) Print WMT and TGT books");
-            System.out.println(ProductManager.getInstance().getProductBook("WMT"));
-            System.out.println(ProductManager.getInstance().getProductBook("TGT"));
-            System.out.println();
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("WMT", u1);
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("TGT", u1);
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("4) Trade test: Single BUY and single SELL order (WMT) - fully trade");
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("ANA", "WMT", PriceFactory.makePrice("$134.00"), 88, BUY));
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("BOB", "WMT", PriceFactory.makePrice("$134.00"), 88, SELL));
-            System.out.println(ProductManager.getInstance().getProductBook("WMT"));
-            System.out.println();
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("WMT", u2);
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("TGT", u2);
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("5) User Tradables:");
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("WMT", u3);
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("TGT", u3);
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("6) Trade test: Single BUY and single SELL order (TGT) - full/partial trade & cancel");
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("TGT", u4);
 
-            ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("ANA", "TGT", PriceFactory.makePrice("$134.00"), 33, BUY));
+            CurrentMarketPublisher.getInstance().subscribeCurrentMarket("WMT", u5);
 
-            TradableDTO dto1 = ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("DIG", "TGT", PriceFactory.makePrice("$134.00"), 66, SELL));
+            CurrentMarketPublisher.getInstance().unSubscribeCurrentMarket("TGT", u2);
 
-            assert dto1 != null;
-            ProductManager.getInstance().getProductBook("TGT").cancel(SELL, dto1.tradableId());
-            System.out.println(ProductManager.getInstance().getProductBook("TGT"));
-            System.out.println();
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\nStep A) Build up book sides with Quotes (no trades)");
+            ProductManager.getInstance().addQuote(
+                    new Quote("TGT",
+                            PriceFactory.makePrice(15990), 75,
+                            PriceFactory.makePrice(16000), 75,
+                            "ANA"));
+            ProductManager.getInstance().addQuote(
+                    new Quote("TGT",
+                            PriceFactory.makePrice(15990), 100,
+                            PriceFactory.makePrice(16000), 100,
+                            "BOB"));
+            System.out.println(ProductManager.getInstance().getProductBook("TGT").toString());
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("7) User Tradables:");
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep B) Enter an Order that trades with the SELL side quotes");
+            ProductManager.getInstance().addTradable(
+                    new Order("COD", "TGT", PriceFactory.makePrice(16000), 100, BUY));
+            System.out.println(ProductManager.getInstance().getProductBook("TGT").toString());
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("8) Trade test: Multiple BUY and single SELL order (WMT) - fully trade");
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep C) Change user ANA's Quote");
+            ProductManager.getInstance().addQuote(
+                    new Quote("TGT",
+                            PriceFactory.makePrice(15985), 111,
+                            PriceFactory.makePrice(16000), 111,
+                            "ANA"));
+            System.out.println(ProductManager.getInstance().getProductBook("TGT").toString());
 
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("ANA", "WMT", PriceFactory.makePrice("$134.50"), 60, BUY));
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("BOB", "WMT", PriceFactory.makePrice("$134.50"), 70, BUY));
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("DIG", "WMT", PriceFactory.makePrice("$134.50"), 80, BUY));
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("EST", "WMT", PriceFactory.makePrice("$134.50"), 210, SELL));
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep E) Enter an Order that trades out the BUY side quotes");
+            System.out.println(ProductManager.getInstance().getProductBook("TGT").toString());
+            ProductManager.getInstance().addTradable(
+                    new Order("DIG", "TGT", PriceFactory.makePrice(15985), 211, SELL));
+            System.out.println(ProductManager.getInstance().getProductBook("TGT").toString());
 
-            System.out.println(ProductManager.getInstance().getProductBook("WMT"));
-            System.out.println();
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep F) Add a BUY TGT order from user DIG that does not trade");
+            TradableDTO t1 = ProductManager.getInstance().addTradable(
+                    new Order("DIG", "TGT", PriceFactory.makePrice(15985), 211, BUY));
+            System.out.println(ProductManager.getInstance().getProductBook("TGT").toString());
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("9) User Tradables:");
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep G) Print users and their OrderDTO's (user order doesn't matter)");
+            System.out.println(UserManager.getInstance().toString());
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("10) Trade test: Multiple BUY and single SELL order (TGT) - full/partial trade & cancel");
-            dto1 = ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("BOB", "TGT", PriceFactory.makePrice("$134.65"), 60, BUY));
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep H) Print product books");
+            System.out.println(ProductManager.getInstance().toString());
 
-            TradableDTO dto2 = ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("COD", "TGT", PriceFactory.makePrice("$134.65"), 70, BUY));
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep I) Enter 3 BUY side orders and 1 quote for WMT");
+            TradableDTO t2 = ProductManager.getInstance().addTradable(
+                    new Order("COD", "WMT", PriceFactory.makePrice(6010), 50, BUY));
+            TradableDTO t3 = ProductManager.getInstance().addTradable(
+                    new Order("DIG", "WMT", PriceFactory.makePrice(6010), 100, BUY));
+            TradableDTO t4 = ProductManager.getInstance().addTradable(
+                    new Order("EST", "WMT", PriceFactory.makePrice(6010), 75, BUY));
+            ProductManager.getInstance().addQuote(
+                    new Quote("WMT",
+                            PriceFactory.makePrice(6010), 111,
+                            PriceFactory.makePrice(6012), 111,
+                            "ANA"));
+            System.out.println(ProductManager.getInstance().getProductBook("WMT").toString());
 
-            TradableDTO dto3 = ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("DIG", "TGT", PriceFactory.makePrice("$134.65"), 80, BUY));
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep J) Display current market values received by all user");
+            System.out.println(u1.getUserId() + ":\n" + u1.getCurrentMarkets());
+            System.out.println(u2.getUserId() + ":\n" + u2.getCurrentMarkets());
+            System.out.println(u3.getUserId() + ":\n" + u3.getCurrentMarkets());
+            System.out.println(u4.getUserId() + ":\n" + u4.getCurrentMarkets());
+            System.out.println(u5.getUserId() + ":\n" + u5.getCurrentMarkets());
 
-            ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("EST", "TGT", PriceFactory.makePrice("$134.65"), 100, SELL));
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep K) Cancel ANA's WMT quote");
+            ProductManager.getInstance().cancelQuote("WMT", "ANA");
 
-            assert dto1 != null;
-            assert dto2 != null;
-            assert dto3 != null;
-            ProductManager.getInstance().getProductBook("TGT").cancel(BUY, dto1.tradableId());
-            ProductManager.getInstance().getProductBook("TGT").cancel(BUY, dto2.tradableId());
-            ProductManager.getInstance().getProductBook("TGT").cancel(BUY, dto3.tradableId());
-            System.out.println(ProductManager.getInstance().getProductBook("TGT"));
-            System.out.println();
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep L) Display current market values received by all user");
+            System.out.println(u1.getUserId() + ":\n" + u1.getCurrentMarkets());
+            System.out.println(u2.getUserId() + ":\n" + u2.getCurrentMarkets());
+            System.out.println(u3.getUserId() + ":\n" + u3.getCurrentMarkets());
+            System.out.println(u4.getUserId() + ":\n" + u4.getCurrentMarkets());
+            System.out.println(u5.getUserId() + ":\n" + u5.getCurrentMarkets());
 
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep M) Cancel any open orders and quotes");
+            ProductManager.getInstance().cancelQuote("TGT", "ANA");
+            ProductManager.getInstance().cancelQuote("TGT", "BOB");
+            ProductManager.getInstance().cancel(t1);
+            ProductManager.getInstance().cancel(t2);
+            ProductManager.getInstance().cancel(t3);
+            ProductManager.getInstance().cancel(t4);
 
-            //////////////////////////////////////////////////////////////
-            System.out.println("11) User Tradables:");
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
-
-            //////////////////////////////////////////////////////////////
-            System.out.println("12) Trade test: Multiple orders and quotes on BUY side traded with 1 SELL order (WMT)");
-
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Quote("WMT", PriceFactory.makePrice("$133.00"), 40,
-                            PriceFactory.makePrice("$133.20"), 75, "ANA"));
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Quote("WMT", PriceFactory.makePrice("$133.00"), 60,
-                            PriceFactory.makePrice("$133.20"), 100, "BOB"));
-
-            dto1 = ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("COD", "WMT", PriceFactory.makePrice("$133.00"), 15, BUY));
-            dto2 = ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("DIG", "WMT", PriceFactory.makePrice("$133.00"), 180, BUY));
-            dto3 = ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("EST", "WMT", PriceFactory.makePrice("$133.00"), 65, BUY));
-
-            assert dto1 != null;
-            assert dto2 != null;
-            assert dto3 != null;
-            System.out.println(ProductManager.getInstance().getProductBook("WMT"));
-            ProductManager.getInstance().getProductBook("WMT")
-                    .add(new Order("FUN", "WMT", PriceFactory.makePrice("$133.00"), 200, SELL));
-            System.out.println(ProductManager.getInstance().getProductBook("WMT"));
-            System.out.println();
-
-            //////////////////////////////////////////////////////////////
-            System.out.println("13) Cancel all WMT quotes and orders");
-            ProductManager.getInstance().getProductBook("WMT").removeQuotesForUser("ANA");
-            ProductManager.getInstance().getProductBook("WMT").removeQuotesForUser("BOB");
-            ProductManager.getInstance().getProductBook("WMT").cancel(BUY, dto1.tradableId());
-            ProductManager.getInstance().getProductBook("WMT").cancel(BUY, dto2.tradableId());
-            ProductManager.getInstance().getProductBook("WMT").cancel(BUY, dto3.tradableId());
-            System.out.println();
-            System.out.println(ProductManager.getInstance().getProductBook("WMT"));
-            System.out.println();
-
-            //////////////////////////////////////////////////////////////
-            System.out.println("14) User Tradables:");
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
-
-            //////////////////////////////////////////////////////////////
-            System.out.println("15) Trade test: Multiple orders and quotes on BUY side traded with 1 SELL order (TGT)");
-            ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Quote("TGT", PriceFactory.makePrice("$133.00"), 40,
-                            PriceFactory.makePrice("$133.20"), 75, "ANA"));
-            ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Quote("TGT", PriceFactory.makePrice("$133.00"), 60,
-                            PriceFactory.makePrice("$133.20"), 100, "BOB"));
-
-            dto1 = ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("COD", "TGT", PriceFactory.makePrice("$131.00"), 15, BUY));
-            dto2 = ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("DIG", "TGT", PriceFactory.makePrice("$131.00"), 180, BUY));
-            dto3 = ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("EST", "TGT", PriceFactory.makePrice("$131.00"), 65, BUY));
-            assert dto1 != null;
-            assert dto2 != null;
-            assert dto3 != null;
-            System.out.println(ProductManager.getInstance().getProductBook("TGT"));
-            ProductManager.getInstance().getProductBook("TGT")
-                    .add(new Order("FUN", "TGT", PriceFactory.makePrice("$131.00"), 200, SELL));
-            System.out.println(ProductManager.getInstance().getProductBook("TGT"));
-            System.out.println();
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
-
-            //////////////////////////////////////////////////////////////
-            System.out.println("16) Cancel all TGT quotes and orders");
-            ProductManager.getInstance().getProductBook("TGT").removeQuotesForUser("ANA");
-            ProductManager.getInstance().getProductBook("TGT").removeQuotesForUser("BOB");
-            ProductManager.getInstance().getProductBook("TGT").cancel(BUY, dto1.tradableId());
-            ProductManager.getInstance().getProductBook("TGT").cancel(BUY, dto2.tradableId());
-            ProductManager.getInstance().getProductBook("TGT").cancel(BUY, dto3.tradableId());
-            System.out.println();
-            System.out.println(ProductManager.getInstance().getProductBook("TGT"));
-            System.out.println();
-
-            //////////////////////////////////////////////////////////////
-            System.out.println("17) User Tradables:");
-            System.out.println("User Tradables:\n" + UserManager.getInstance().toString());
-            //////////////////////////////////////////////////////////////
-
-            System.out.println("18) Flyweight Price Tests");
-
-            Price p1 = PriceFactory.makePrice("$134.00");
-            Price p2 = PriceFactory.makePrice("$134.00");
-            Price p3 = PriceFactory.makePrice(13400);
-            Price p4 = PriceFactory.makePrice("$134.01");
-
-            System.out.println("\tp1 and p2 same object (true): " + (p1 == p2));
-            System.out.println("\tp1 and p3 same object (true): " + (p1 == p3));
-            System.out.println("\tp2 and p3 same object (true): " + (p2 == p3));
-            System.out.println("\tp1 and p4 same object (false): " + (p1 == p4));
-
-
-            System.out.println("\nTESTS COMPLETE");
+            ////////////////////////////////////////////////////////////////////////////
+            System.out.println("\n\nStep N) Display current market values received by all user");
+            System.out.println(u1.getUserId() + ":\n" + u1.getCurrentMarkets());
+            System.out.println(u2.getUserId() + ":\n" + u2.getCurrentMarkets());
+            System.out.println(u3.getUserId() + ":\n" + u3.getCurrentMarkets());
+            System.out.println(u4.getUserId() + ":\n" + u4.getCurrentMarkets());
+            System.out.println(u5.getUserId() + ":\n" + u5.getCurrentMarkets());
 
         } catch (Exception e) {
             e.printStackTrace();

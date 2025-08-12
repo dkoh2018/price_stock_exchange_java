@@ -115,7 +115,7 @@ public class Order implements Tradable {
 
     @Override
     public String toString() {
-        return String.format("%s %s order: %s at %s, Orig Vol: %d, Rem Vol: %d, Fill Vol: %d, CXL Vol: %d, ID: %s",
+        return String.format("%s %s order: %s at %s, Orig Vol: %d, Rem Vol: %d, Fill Vol: %d, Cxl'd Vol: %d, ID: %s",
                 user,
                 side,
                 product,

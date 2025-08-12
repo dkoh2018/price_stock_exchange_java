@@ -1,5 +1,6 @@
 package book;
 
+import current.CurrentMarketTracker;
 import exceptions.InvalidProductBookException;
 import exceptions.InvalidTradableException;
 import price.Price;
@@ -32,6 +33,7 @@ public class ProductBook {
         
         TradableDTO dto = side.add(t);
         tryTrade();
+        updateMarket();
         return dto;
     }
 
@@ -67,6 +69,8 @@ public class ProductBook {
             String msg = (side == BookSide.BUY ? "Failed to cancel BUY order" : "Failed to cancel SELL order");
             System.out.println(msg + "\n");
         }
+
+        updateMarket();
         return result;
     }
 
@@ -78,6 +82,8 @@ public class ProductBook {
         }
         dtos[0] = buySide.removeQuotesForUser(userName);
         dtos[1] = sellSide.removeQuotesForUser(userName);
+
+        updateMarket();
         return dtos;
     }
 
@@ -101,6 +107,16 @@ public class ProductBook {
             buySide.tradeOut(topBuyPrice, volumeToTrade);
             sellSide.tradeOut(topBuyPrice, volumeToTrade);
         }
+    }
+
+    private void updateMarket() {
+        Price buyPrice = buySide.topOfBookPrice();
+        int buyVolume = buySide.topOfBookVolume();
+
+        Price sellPrice = sellSide.topOfBookPrice();
+        int sellVolume = sellSide.topOfBookVolume();
+
+        CurrentMarketTracker.getInstance().updateMarket(product, buyPrice, buyVolume, sellPrice, sellVolume);
     }
 
     public String getTopOfBookString(BookSide side) {
