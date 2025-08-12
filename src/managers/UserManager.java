@@ -5,6 +5,8 @@ import java.util.TreeMap;
 import tradable.TradableDTO;
 import users.User;
 
+import javax.xml.crypto.Data;
+
 
 public class UserManager {
 
@@ -29,7 +31,17 @@ public class UserManager {
             users.put(userId, newUser);
         }
     }
-    
+
+    public User getUser(String userId) throws DataValidationException {
+        User user = users.get(userId);
+
+        if (user == null) {
+            throw new DataValidationException("User not found: " + userId);
+        }
+
+        return user;
+    }
+
     // update a tradable
     public void updateTradable(String userId, TradableDTO o) throws DataValidationException {
         if (userId == null) {
