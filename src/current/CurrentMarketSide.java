@@ -11,6 +11,7 @@ public class CurrentMarketSide {
         this.volume = volume;
     }
 
+    @Override
     public String toString() {
         if (price == null) {
             return "$0.00x" + volume;

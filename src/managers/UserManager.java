@@ -5,8 +5,6 @@ import java.util.TreeMap;
 import tradable.TradableDTO;
 import users.User;
 
-import javax.xml.crypto.Data;
-
 
 public class UserManager {
 
